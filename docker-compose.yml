@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  db:
+    container_name: onehypernet-db
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: 'onehypernet'
+      POSTGRES_USER: 'onehypernet'
+      POSTGRES_PASSWORD: 'mysecretpassword'
+    ports:
+      - 5432:5432
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
+  redis:
+    container_name: onehypernet-redis
+    image: redis:latest
+    ports:
+      - '6379:6379'
+
