@@ -1,0 +1,56 @@
+/* TSConfig Reference https://www.typescriptlang.org/tsconfig */
+{
+  /* File Inclusion */
+  "include": ["src", "@types"],
+  "exclude": ["dist", "node_modules"],
+  "compilerOptions": {
+    /* Project Options */
+    
+    "target": "ES2017",
+    "module": "commonjs",
+    "importHelpers": true,
+    "isolatedModules": true,
+    "outDir": "dist",
+    "removeComments": true,
+    "lib": ["ES2019.Array"],
+    /* Strict Checks */
+    "strict": true,
+    /* Module Resolution */
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "paths": {
+      "#assets/*": ["src/assets/*"],
+      "#configs": ["src/configs"],
+      "#configs/*": ["src/configs/*"],
+      "#constants": ["src/constants"],
+      "#entities/*": ["src/entities/*"],
+      "#services": ["src/services"],
+      "#services/*": ["src/services/*"],
+      "#utils/*": ["src/utils/*"],
+      /* NestJS Modules */
+      "#modules/*": ["src/modules/*"],
+      "#app/*": ["src/modules/app/*"],
+      "#shared": ["src/modules/shared"],
+      "#shared/*": ["src/modules/shared/*"],
+      "#v1": ["src/modules/v1"],
+      "#v1/*": ["src/modules/v1/*"],
+      "*": [ "src/types/*"]
+    },
+    "typeRoots": ["node_modules/@types", "@types", "src/types/index.d.ts", "src/types/facebook-nodejs-business-sdk/index.d.ts"],
+    /* Linter Checks */
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    /* Experimental */
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    /* Advanced */
+    "forceConsistentCasingInFileNames": true,
+    "preserveConstEnums": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true
+  }
+}
