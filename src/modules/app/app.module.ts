@@ -1,4 +1,5 @@
 import Config, { load } from '#configs';
+import { ModuleV1 } from '#modules/v1';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
@@ -15,6 +16,7 @@ import { AppService } from './app.service';
       },
       inject: [ConfigService],
     }),
+    ModuleV1,
   ],
   controllers: [AppController],
   providers: [AppService],
