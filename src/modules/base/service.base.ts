@@ -1,7 +1,15 @@
 import { Injectable, Type } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { QueryFilter } from '@nestjsx/crud-request';
-import { DeepPartial, EntityManager, FindConditions, FindManyOptions, FindOneOptions, Repository } from 'typeorm';
+import {
+  DeepPartial,
+  EntityManager,
+  FindConditions,
+  FindManyOptions,
+  FindOneOptions,
+  ObjectLiteral,
+  Repository,
+} from 'typeorm';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
 export interface IBaseService<T> {
@@ -20,7 +28,7 @@ export interface IBaseService<T> {
 
 type Constructor<I> = new (...args: any[]) => I;
 
-export function BaseService<T>(entity: Constructor<T>): Type<IBaseService<T>> {
+export function BaseService<T extends ObjectLiteral>(entity: Constructor<T>): Type<IBaseService<T>> {
   @Injectable()
   class BaseServiceHost implements IBaseService<T> {
     constructor(@InjectRepository(entity) private readonly repository: Repository<T>) {}
@@ -43,6 +51,8 @@ export function BaseService<T>(entity: Constructor<T>): Type<IBaseService<T>> {
     }
 
     async create(dto: DeepPartial<T>, manager?: EntityManager): Promise<T> {
+      console.log('dto', dto);
+
       if (manager) {
         return await manager.save(entity, manager.create(entity, dto));
       } else {

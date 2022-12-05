@@ -1,3 +1,4 @@
+import { UserRole } from './../../../../entities/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import { IsEmail, IsString, IsNotEmpty } from 'class-validator';
@@ -21,7 +22,7 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
-  @ApiProperty({ example: 'Admin' })
+  @ApiProperty({ enum: UserRole, example: 'admin' })
   @Transform(({ value }) => value.toLowerCase())
   readonly role?: string;
 }
